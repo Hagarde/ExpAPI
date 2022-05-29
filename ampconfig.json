@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.12.7",
+  "appInfo": {
+    "name": "Experisite ",
+    "description": "",
+    "version": "oki3661l",
+    "id": "cl3ruce5578866801kamkz4ot0d",
+    "url": "https://server.amplication.com/cl3ruce5578866801kamkz4ot0d",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "",
+      "dbPassword": "admin",
+      "dbPort": 5432,
+      "dbUser": "admin",
+      "appId": "cl3ruce5578866801kamkz4ot0d",
+      "authProvider": "Jwt"
+    }
+  }
+}
