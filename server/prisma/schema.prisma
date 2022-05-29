@@ -1,0 +1,67 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("POSTGRESQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     String[]
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Epidemie {
+  createdAt       DateTime @default(now())
+  duree           Float?
+  id              String   @id @default(cuid())
+  indiceIncidence Float
+  resumes         Resume[]
+}
+
+model Resume {
+  acc                Boolean
+  createdAt          DateTime                     @default(now())
+  epsilon            Float?
+  experiences        Experience[]
+  id                 String                       @id @default(cuid())
+  infecteInitiale    EnumResumeInfecteInitiale[]
+  proportionInitiale Float
+  situationInitiale  EnumResumeSituationInitiale?
+  virus              Epidemie                     @relation(fields: [virusId], references: [id])
+  virusId            String
+}
+
+model Experience {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  region1   Json?
+  region2   Json?
+  region3   Json?
+  region4   Json?
+  resume    Resume?  @relation(fields: [resumeId], references: [id])
+  resumeId  String?
+  t         Int?
+  tests     Json?
+}
+
+enum EnumResumeInfecteInitiale {
+  Region1
+  Region2
+  Region3
+  Region4
+}
+
+enum EnumResumeSituationInitiale {
+  Confinement
+  FluxGeo
+  FluxGenerationelle
+  Libre
+}
